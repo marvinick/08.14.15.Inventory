@@ -71,5 +71,37 @@
             $this->assertEquals([], $result);
         }
 
+        function test_getId()
+        {
+            //Arrange
+            $name = "Book";
+            $id = 1;
+            $test_Inventory = new Inventory($name, $id);
+
+            //Act
+            $result = $test_Inventory->getId();
+
+            //Assert
+            $this->assertEquals(1, $result);
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $name = "Book";
+            $name2 = "Paper";
+            $test_inventory = new Inventory($name);
+            $test_inventory->save();
+            $test_inventory2 = new Inventory($name2);
+            $test_inventory2->save();
+
+            //Act
+            $id = $test_inventory->getId();
+            $result = Inventory::find($id);
+
+            //Assert
+            $this->assertEquals($test_inventory, $result);
+        }
+
     }
 ?>
